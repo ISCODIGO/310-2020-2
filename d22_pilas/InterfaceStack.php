@@ -5,7 +5,7 @@
  * utilizar las operaciones basicas de una Pila
  */
 
-interface PilaInterface {
+interface InterfaceStack {
     // Funcion para agregar un elemento
     public function push($elemento);
 

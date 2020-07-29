@@ -1,10 +1,13 @@
 <?php
 
-require_once('PilaInterface.php');
+require_once('InterfaceStack.php');
 
-class PilaArray implements PilaInterface {
+class StackArray implements InterfaceStack {
+    // Conjunto de los datos
     private $datos;
-    private $size;
+
+    // Apunta al elemento en la cima (top)
+    private $cima;
 
     public function __construct() {
         $this->datos = [];
@@ -16,12 +19,12 @@ class PilaArray implements PilaInterface {
         $this->cima++;
     }
 
-    public function pop() {
-        if ($this->is_empty()) {
-            throw new Exception('Pila vacia');
-        }
+    public function is_empty(): bool {
+        return ($this->cima == -1);
+    }    
 
-        $aux = $this->datos[$this->cima];
+    public function pop() {
+        $aux = top();
         unset($this->datos[$this->cima--]);        
         return $aux;
     }
@@ -37,9 +40,5 @@ class PilaArray implements PilaInterface {
     public function clear() {
         $this->datos = [];
         $this->cima = -1;
-    }
-
-    public function is_empty(): bool {
-        return ($this->cima == -1);
     }
 }

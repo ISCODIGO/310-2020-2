@@ -4,8 +4,8 @@
  * Implementacion de la pila
  */
 
-require_once('PilaArray.php');
-$pila = new PilaArray();
+require_once('StackArray.php');
+$pila = new StackArray();
 
 $pila->push(10);
 $pila->push(20);
