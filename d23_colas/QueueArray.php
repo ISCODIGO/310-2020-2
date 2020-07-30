@@ -43,7 +43,7 @@ class QueueArray implements InterfaceQueue {
     public function clear() {
         $this->datos = [];
         $this->primero = 0;
-        $this->ultimo = -1;
+        $this->ultimo = 0;
     }
 
     public function print() {
