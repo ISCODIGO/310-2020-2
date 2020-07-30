@@ -24,7 +24,7 @@ class StackArray implements InterfaceStack {
     }    
 
     public function pop() {
-        $aux = top();
+        $aux = $this->top();
         unset($this->datos[$this->cima--]);        
         return $aux;
     }
