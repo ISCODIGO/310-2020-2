@@ -14,7 +14,7 @@ class QueueArray implements InterfaceQueue {
     public function __construct() {
         $this->datos = [];
         $this->primero = 0;
-        $this->ultimo = -1;
+        $this->ultimo = 0;
     }
 
     public function enqueue($elemento) {
@@ -23,14 +23,14 @@ class QueueArray implements InterfaceQueue {
     }
 
     public function is_empty(): bool {
-        return ($this->primero > $this->ultimo);
+        return ($this->primero === $this->ultimo);
     }
 
     public function front() {
         if ($this->is_empty()) {
             throw new Exception('Cola vacia');
         }
-        
+
         return $this->datos[$this->primero];
     }
 
