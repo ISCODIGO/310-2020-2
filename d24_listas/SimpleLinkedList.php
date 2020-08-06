@@ -1,8 +1,6 @@
 <?php
 
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'InterfaceList.php';
-
-//require_once '../InterfaceList.php';
+require_once 'InterfaceList.php';
 
 class Node 
 {
@@ -34,6 +32,13 @@ class LinkedList implements InterfaceList
         $this->clear();
     }
 
+    public function clear()
+    {
+        $this->primero = null;
+        $this->ultimo = null;
+        $this->conteo = 0;
+    }
+
     public function is_empty()
     {
         return ($this->primero == NULL);
@@ -42,7 +47,7 @@ class LinkedList implements InterfaceList
     public function addFirst($dato)
     {
         $nodo = new Node($dato);
-        $nodo->siguiente = $this->primero;
+        $nodo->siguiente = &$this->primero;
         $this->primero = &$nodo;
 
         if ($this->ultimo == NULL) 
@@ -77,9 +82,13 @@ class LinkedList implements InterfaceList
         // Paso extra: almacenado en $aux el valor que 
         // eliminare.
         $aux = &$this->primero;
+        $valor = $aux->get_dato();
+
         $this->primero = &$this->primero->siguiente;
         unset($aux);
         $this->conteo--;
+
+        return $valor;
     }
 
     public function removeLast()
@@ -90,6 +99,8 @@ class LinkedList implements InterfaceList
         }
 
         $aux = &$this->ultimo;
+        $valor = $aux->get_dato();
+
         $item = &$this->primero;
         while ($item->siguiente->siguiente != NULL) 
         {            
@@ -100,18 +111,13 @@ class LinkedList implements InterfaceList
         $this->ultimo = &$item;
         unset($aux);
         $this->conteo--;
+
+        return $valor;
     }
 
     public function search($dato)
     {
         // No implementada aun.
-    }
-
-    public function clear()
-    {
-        $this->primero = null;
-        $this->ultimo = null;
-        $this->conteo = 0;
     }
 
     public function size() 

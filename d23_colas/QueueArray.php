@@ -14,7 +14,11 @@ class QueueArray implements InterfaceQueue {
     public function __construct() {
         $this->datos = [];
         $this->primero = 0;
-        $this->ultimo = 0;
+        $this->ultimo = -1;        
+    }
+
+    public function is_empty(): bool {        
+        return ($this->primero > $this->ultimo);
     }
 
     public function enqueue($elemento) {
@@ -22,32 +26,45 @@ class QueueArray implements InterfaceQueue {
         $this->ultimo++;
     }
 
-    public function is_empty(): bool {
-        return ($this->primero === $this->ultimo);
-    }
-
-    public function front() {
-        if ($this->is_empty()) {
+    public function front() 
+    {
+        if ($this->is_empty()) 
+        {
             throw new Exception('Cola vacia');
         }
 
         return $this->datos[$this->primero];
     }
 
-    public function dequeue() {
-        $aux = $this->front();
-        unset($this->datos[$this->primero++]);
-        return $aux;
+    public function back()
+    {
+        return $this->datos[$this->ultimo];
     }
 
-    public function clear() {
+    public function dequeue() 
+    {
+        $eliminado = $this->front();
+        // Este funciona en PHP: Elimina el elemento del array
+        unset($this->datos[$this->primero]);
+        $this->primero++;
+        return $eliminado;
+    }
+
+    public function clear() 
+    {
         $this->datos = [];
         $this->primero = 0;
         $this->ultimo = 0;
     }
 
-    public function print() {
+    public function print() 
+    {
         echo 'Primero=', $this->primero, ' Ultimo=', $this->ultimo, PHP_EOL;
         var_dump($this->datos);
     } 
+
+    public function size()
+    {
+        return count($this->datos); // O(1)
+    }
 }
