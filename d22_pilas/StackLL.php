@@ -1,8 +1,7 @@
 <?php
 
 require_once 'InterfaceStack.php';
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . '/d24_listas/simples/LinkedList.php';
-//require_once '../d24_listas/simples/LinkedList.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . '/d24_listas/SimpleLinkedList.php';
 
 class StackLL implements InterfaceStack
 {
