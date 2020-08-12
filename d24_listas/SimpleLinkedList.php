@@ -115,7 +115,7 @@ class LinkedList implements InterfaceList
         return $valor;
     }
 
-    public function search($dato)
+    public function search($dato): bool
     {
         // No implementada aun.
     }
